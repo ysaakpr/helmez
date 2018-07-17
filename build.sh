@@ -8,10 +8,13 @@ rm -rf bin
 mkdir bin
 for i in "${archs[@]}"
 do
-rm helmez/helmez-bin
 binurl="https://github.com/ysaakpr/helmez-bin/releases/download/${BINVERSION}/helmez-bin.${i}"
-curl -L -o helmez/helmez-bin ${binurl}
+echo building ${i}, with bin version ${BINVERSION}
+echo url : ${binurl}
 cd helmez
-tar -cvf ../bin/helmez-${i}.tar.gz .
+rm helmez-bin
+
+curl -L -o helmez-bin ${binurl}
+tar -zcvf ../bin/helmez-${i}.tar.gz .
 cd ../
 done 
